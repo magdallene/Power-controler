@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        google() // For Gradle 4.0+
+        maven { url 'https://maven.google.com' } // For Gradle < 4.0
+
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0'
+    }
+}
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.power_plug"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.0'
+}
+
+repositories {
+    google()
+}
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
