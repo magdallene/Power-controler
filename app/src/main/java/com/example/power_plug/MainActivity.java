@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +22,14 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
     ImageView bg_state;
     Button btn_rl; /*btn_mr, btn_bed, btn_fan*/
     TextView txt_network;
-    String url = "http://192.168.0.27/"; //Define your NodeMCU IP Address here Ex: http://192.168.1.4/
+    String url = "http://192.168.0.25/"; //Define your NodeMCU IP Address here Ex: http://192.168.1.4/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater= getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +59,9 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
 
 
         btn_rl = findViewById(R.id.sw_1);
-    //    btn_mr = findViewById(R.id.mirror);
-     //   btn_bed = findViewById(R.id.bed);
-      //  btn_fan = findViewById(R.id.fan);
+        //    btn_mr = findViewById(R.id.mirror);
+        //   btn_bed = findViewById(R.id.bed);
+        //  btn_fan = findViewById(R.id.fan);
 
         btn_rl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +126,9 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
             JSONObject json = new JSONObject(jsonStrings);
 
             String room_light = json.getString("rl");
-        //    String mirror_light = json.getString("ml");
-        //    String bed_light = json.getString("bl");
-        //    String fan = json.getString("fan");
+            //    String mirror_light = json.getString("ml");
+            //    String bed_light = json.getString("bl");
+            //    String fan = json.getString("fan");
 
 
             if(room_light.equals("1")){
