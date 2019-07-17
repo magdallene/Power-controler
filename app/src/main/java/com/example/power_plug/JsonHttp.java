@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Sulkiflee on 8/6/2558.
- */
 public class JsonHttp {
 
     public static String makeHttpRequest(String url){
@@ -54,5 +51,4 @@ public class JsonHttp {
     public interface AsyncResponse {
         void processFinish(String output);
     }
-
 }

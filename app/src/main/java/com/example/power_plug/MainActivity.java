@@ -1,13 +1,17 @@
 package com.example.power_plug;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,12 +28,7 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
     TextView txt_network;
     String url = "http://192.168.0.25/"; //Define your NodeMCU IP Address here Ex: http://192.168.1.4/
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater= getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
 
         bg_state = findViewById(R.id.bg_status);
         txt_network = findViewById(R.id.txt_network);
+
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
 
         final Handler handler = new Handler();
@@ -100,6 +103,25 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
                 updateStatus();
             }
         });*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater= getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id==R.id.conf){
+            Intent intent_conf = new Intent(MainActivity.this, Configuration.class);
+            startActivity(intent_conf);
+            return false;
+        }
+    return super.onOptionsItemSelected(item);
     }
 
     private boolean isNetworkAvailable() {
