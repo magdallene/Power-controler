@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Power Plug</string>
+    <string name="activity_setup_network">WiFi Configuration</string>
+    <string name="instruction">Connect with ESP8266 WiFI network,and go to http://192.168.4.1 .
+        After adding specific network click EXIT PORTAL button and enter given IP address below</string>
+    <string name="label_ip_address">IP Address:</string>
+    <string name="action_setup">Add your WiFi</string>
+    <string name="ip_hint">192.168.1.1</string>
+    <string name="action_ok">Ok</string>
+    <string name="Bug">Could not connect to the server</string>
 </resources>

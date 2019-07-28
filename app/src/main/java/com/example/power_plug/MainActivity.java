@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,10 +25,10 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity implements OnDataSendToActivity {
 
     ImageView bg_state;
-    Button btn_rl; /*btn_mr, btn_bed, btn_fan*/
+    Button btn_rl;
     TextView txt_network;
-    String url = "http://192.168.0.25/"; //Define your NodeMCU IP Address here Ex: http://192.168.1.4/
-
+    String url=Configuration.getData();
+    String my_url="http://"+url+"/";
 
 
     @Override
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
         setSupportActionBar(toolbar);
 
 
-
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
                     txt_network.setText("");
                 }else{
                     bg_state.setImageResource(R.drawable.background_on);
-                    txt_network.setText("Cound not connect to the server");
+                    txt_network.setText(getString(R.string.Bug));
                 }
 
                 updateStatus();
@@ -61,48 +61,19 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
         }, 5000);  //the time is in miliseconds
 
 
+
         btn_rl = findViewById(R.id.sw_1);
-        //    btn_mr = findViewById(R.id.mirror);
-        //   btn_bed = findViewById(R.id.bed);
-        //  btn_fan = findViewById(R.id.fan);
 
         btn_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url_rl = url+"room_light";
+                String url_rl = my_url+"room_light";
                 SelectTask task = new SelectTask(url_rl);
                 task.execute();
                 updateStatus();
             }
         });
 
-      /*  btn_mr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url_rl = url+"mirror_light";
-                SelectTask task = new SelectTask(url_rl);
-                task.execute();
-                updateStatus();
-            }
-        });*/
-     /*   btn_bed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url_rl = url+"bed_light";
-                SelectTask task = new SelectTask(url_rl);
-                task.execute();
-                updateStatus();
-            }
-        });*/
-       /* btn_fan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url_rl = url+"fan";
-                SelectTask task = new SelectTask(url_rl);
-                task.execute();
-                updateStatus();
-            }
-        });*/
     }
 
     @Override
@@ -118,10 +89,10 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
 
         if(id==R.id.conf){
             Intent intent_conf = new Intent(MainActivity.this, Configuration.class);
-            startActivity(intent_conf);
+            startActivityForResult(intent_conf,1);
             return false;
         }
-    return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean isNetworkAvailable() {
@@ -137,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
     }
 
     private void updateStatus(){
-        String url_rl = url+"status";
+        String url_rl = my_url+"status";
         StatusTask task = new StatusTask(url_rl, this);
         task.execute();
     }
@@ -148,9 +119,6 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
             JSONObject json = new JSONObject(jsonStrings);
 
             String room_light = json.getString("rl");
-            //    String mirror_light = json.getString("ml");
-            //    String bed_light = json.getString("bl");
-            //    String fan = json.getString("fan");
 
 
             if(room_light.equals("1")){
@@ -158,22 +126,6 @@ public class MainActivity extends AppCompatActivity implements OnDataSendToActiv
             }else{
                 btn_rl.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.plug_90on);
             }
-         /*   if(mirror_light.equals("1")){
-                btn_mr.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.power_on);
-            }else{
-                btn_mr.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.power_off);
-            }
-            if(bed_light.equals("1")){
-                btn_bed.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.power_on);
-            }else{
-                btn_bed.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.power_off);
-            }
-            if(fan.equals("1")){
-                btn_fan.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.power_on);
-            }else{
-                btn_fan.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.power_off);
-            } */
-
         }catch (JSONException e){
             e.printStackTrace();
         }

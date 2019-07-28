@@ -11,6 +11,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
     <RelativeLayout
 
         android:id="@+id/relativeLayout"
@@ -36,67 +37,6 @@
             android:visibility="visible"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
-        <!--
-    <ImageButton
-        android:id="@+id/btn_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@drawable/head_button"
-        android:padding="6dp"
-        android:src="@drawable/ic_settings" />
-
-    <Button
-        android:id="@+id/my_room"
-        android:layout_width="355dp"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btn_setting"
-        android:layout_alignRight="@+id/btn_setting"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:background="@drawable/head_button"
-        android:clickable="false"
-        android:paddingLeft="50dp"
-        android:text="Switch"
-        android:textSize="18sp" />-->
-
-        <!--
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/my_room"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_centerHorizontal="true">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:background="@drawable/button_rec">
-            <TextView
-                android:id="@+id/temp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="Temperature: "/>
-            <TextView
-                android:id="@+id/hum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="Humidity: "/>
-        </LinearLayout>
-    </RelativeLayout>
-    -->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -141,15 +81,4 @@
 
     </RelativeLayout>
 
-   <!-- <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        tools:layout_editor_absoluteX="0dp" />-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 </RelativeLayout>
