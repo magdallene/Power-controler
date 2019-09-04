@@ -6,9 +6,6 @@ import android.os.AsyncTask;
 import com.example.power_plug.JsonHttp;
 import com.example.power_plug.OnDataSendToActivity;
 
-/**
- * Created by dzulkiflee on 3/19/2017 AD.
- */
 
 public class StatusTask extends AsyncTask<Void, Void, String> {
 
